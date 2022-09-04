@@ -9,6 +9,11 @@ h1 {
   text-decoration: underline;
 }
 
+.filter-green {
+  filter: invert(83%) sepia(45%) saturate(2300%) hue-rotate(60deg)
+    brightness(93%) contrast(99%);
+}
+
 .del {
   transition: 0.2s;
 }
