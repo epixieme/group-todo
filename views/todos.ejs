@@ -13,7 +13,7 @@
     <h1>Todos</h1>
     <ul>
         <% todos.forEach( el=> { %> <li class='todoItem' data-id='<%=el._id%>'>
-            <input type="image" class="<%= el.completed === true ? "filter-green" : ""%>"
+            <input type="image" class="<%= el.completed === true ? "filter-green" : "not"%>"
                 src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>" alt="">
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
             <input type="image" class='del' src="/images/trash.svg">
