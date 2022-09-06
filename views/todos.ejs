@@ -10,7 +10,12 @@
 </head>
 
 <body>
+    
     <h1>Todos</h1>
+  <section>
+    <label for="searchTodo">Search Todo List</label>
+    <input type="text" name="searchTodo">
+  </section>
     <ul>
         <% todos.forEach( el=> { %> <li class='todoItem' data-id='<%=el._id%>'>
             <input type="image" class="<%= el.completed === true ? "filter-green" : "not"%>"
