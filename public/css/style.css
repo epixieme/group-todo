@@ -7,6 +7,7 @@ h1 {
 input[type="image"] {
   vertical-align: bottom;
   transition: 0.2s;
+  padding-left: 5px;
 }
 
 input[type="image"]:hover {
@@ -19,11 +20,7 @@ input[type="image"]:hover {
   color: gray;
 }
 
-.not {
-  text-decoration: underline;
-}
-
-.filter-green {
+.check-completed {
   filter: invert(83%) sepia(45%) saturate(2300%) hue-rotate(60deg)
     brightness(93%) contrast(99%);
 }

@@ -1,10 +1,8 @@
 const deleteBtn = document.querySelectorAll(".del");
-const todoItem = document.querySelectorAll("input.not");
-const todoComplete = document.querySelectorAll("input.filter-green");
+const todoItem = document.querySelectorAll("input.check-incomplete");
+const todoComplete = document.querySelectorAll("input.check-completed");
 const editBtn = document.querySelectorAll(".edit");
 const updateBtn = document.querySelectorAll(".update");
-
-
 
 Array.from(deleteBtn).forEach((el) => {
   el.addEventListener("click", deleteTodo);
@@ -32,7 +30,6 @@ if (updateBtn) {
     element.addEventListener("click", updateTodoInfo);
   });
 }
-
 
 async function deleteTodo() {
   const todoId = this.parentNode.dataset.id;
@@ -88,37 +85,43 @@ async function markIncomplete() {
   }
 }
 
-
 function editTodoInfo() {
   let id = this.parentNode.dataset.id;
   let todoText = this.parentNode.children[1];
+  let saveChanges = this.parentNode.children[3];
   if (id) {
+    this.hidden = true;
+    saveChanges.hidden = false;
     todoText.setAttribute("contenteditable", true);
     todoText.style.background = "#C8CFD2";
-    todoText.border = "1px solid grey";
+    todoText.border = "1px solid black";
+    todoText.focus();
   }
 }
 
- async function updateTodoInfo() {
+async function updateTodoInfo() {
   let todoId = this.parentNode.dataset.id;
   let todoText = this.parentNode.children[1];
-console.log(todoText.innerText)
+  let editItem = this.parentNode.children[2];
+  console.log(todoText.innerText);
 
-   if (todoId) {
+  if (todoId) {
+    this.hidden = true;
+    editItem.hidden = false;
     todoText.setAttribute("contenteditable", false);
     todoText.style.background = "none";
     todoText.border = "none";
   }
-    try {
-      await fetch("/todos/updateTodo", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          todoIdFromJSFile: todoId,
-          textInput:todoText.innerText
-        }),
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  try {
+    await fetch("/todos/updateTodo", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId,
+        textInput: todoText.innerText,
+      }),
+    });
+  } catch (err) {
+    console.log(err);
   }
+}
