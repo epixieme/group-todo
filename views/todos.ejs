@@ -10,7 +10,18 @@
 </head>
 
 <body>
-    <h1>Todos</h1>
+ <h1>Todos</h1>
+  <section>
+    <label for="searchItem">Search Todo List</label>
+    <form method="POST" action="/todos/search">
+        <input
+          type="search"
+          name="searchItem"
+          placeholder="search..."
+          aria-label="search"
+        />
+      </form>
+  </section>
     <ul>
         <% todos.forEach( el=> { %> <li class='todoItem' data-id='<%=el._id%>'>
             <input type="image" class="<%= el.completed === true ? "check-completed" : "check-incomplete"%>"
