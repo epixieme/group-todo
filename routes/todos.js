@@ -3,9 +3,15 @@ const router = express.Router()
 const todosController = require('../controllers/todos') 
 const { ensureAuth } = require('../middleware/auth')
 
+
+
 router.get('/', ensureAuth, todosController.getTodos)
 
 router.post('/createTodo', todosController.createTodo)
+
+router.post('/search', todosController.searchTodo)
+
+router.put('/updateTodo', todosController.updateTodo)
 
 router.put('/markComplete', todosController.markComplete)
 
