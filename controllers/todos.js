@@ -1,5 +1,10 @@
 const Todo = require("../models/Todo");
 
+
+function errorHandling(res, error) {
+  res.status(500).send({ message: error.message || "Error Occured" });
+}
+
 module.exports = {
   getTodos: async (req, res) => {
     console.log(req.user);
@@ -15,7 +20,20 @@ module.exports = {
         user: req.user,
       });
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
+    }
+  },
+  searchTodo: async (req, res) => {
+    console.log(req.body.searchItem);
+    try {
+      // get search input from client - name = searchItem
+      let searchItem = req.body.searchItem;
+      let todo = await Todo.find({
+        $text: { $search: searchItem, $diacriticSensitive: true }, // add searchItem search term to the find
+      });
+      res.render("search", {todo}); // render it to the search ejs file
+    } catch (error) {
+      errorHandling(res, error)
     }
   },
   createTodo: async (req, res) => {
@@ -28,12 +46,10 @@ module.exports = {
       console.log("Todo has been added!");
       res.redirect("/todos");
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
     }
   },
   updateTodo: async (req, res) => {
-    console.log(Todo);
-
     try {
       await Todo.findOneAndUpdate(
         { _id: req.body.todoIdFromJSFile },
@@ -44,7 +60,7 @@ module.exports = {
       console.log("Updated Todo");
       res.json("Updated It");
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
     }
   },
   markComplete: async (req, res) => {
@@ -58,7 +74,7 @@ module.exports = {
       console.log("Marked Complete");
       res.json("Marked Complete");
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
     }
   },
   markIncomplete: async (req, res) => {
@@ -72,7 +88,7 @@ module.exports = {
       console.log("Marked Incomplete");
       res.json("Marked Incomplete");
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
     }
   },
   deleteTodo: async (req, res) => {
@@ -82,7 +98,7 @@ module.exports = {
       console.log("Deleted Todo");
       res.json("Deleted It");
     } catch (err) {
-      console.log(err);
+      errorHandling(res, error)
     }
   },
 };
