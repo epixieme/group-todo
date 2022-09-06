@@ -28,10 +28,10 @@ module.exports = {
     try {
       // get search input from client - name = searchItem
       let searchItem = req.body.searchItem;
-      let todo = await Todo.find({
+      let todoItems = await Todo.find({
         $text: { $search: searchItem, $diacriticSensitive: true }, // add searchItem search term to the find
       });
-      res.render("search", {todo}); // render it to the search ejs file
+      res.render("search", {todos: todoItems}); // render it to the search ejs file
     } catch (error) {
       errorHandling(res, error)
     }

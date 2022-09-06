@@ -12,6 +12,25 @@
 <body>
 
 <h1 class="pb-4">Search Results</h1>
+
+  <!-- covers if the object is undefined or not there -->
+  <section class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <!-- covers if the object is undefined or not there -->
+    <ul>
+    <% if(todos !='') { %> <% todos.forEach(function(el, index){ %> <li class='todoItem' data-id='<%=el._id%>'>
+        <input type="image" class="<%= el.completed === true ? "filter-green" : "not"%>"
+            src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>" alt="">
+        <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+        <input type="image" class='del' src="/images/trash.svg">
+        <!-- temporary buttons that can be changed to svgs -->
+        <button class ='edit'>Edit</button>
+        <button class ='update'>Update</button>
+    </li>
+    <% }) %> <% } else { %>
+    <p>No items found.</p>
+    <% } %>
+  </section>
+
 </body>
 </html>
 
