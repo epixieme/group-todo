@@ -17,6 +17,9 @@
                 src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>" alt="">
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
             <input type="image" class='del' src="/images/trash.svg">
+            <!-- temporary buttons that can be changed to svgs -->
+            <button class ='edit'>Edit</button>
+            <button class ='update'>Update</button>
         </li>
         <% }) %>
     </ul>
