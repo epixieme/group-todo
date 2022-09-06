@@ -14,12 +14,12 @@
     <ul>
         <% todos.forEach( el=> { %> <li class='todoItem' data-id='<%=el._id%>'>
             <input type="image" class="<%= el.completed === true ? "filter-green" : "not"%>"
-                src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>" alt="">
+                src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>"
+                alt="<%= el.completed === true ? "Item uncompleted" : "Item completed"%>">
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-            <input type="image" class='del' src="/images/trash.svg">
-            <!-- temporary buttons that can be changed to svgs -->
-            <button class ='edit'>Edit</button>
-            <button class ='update'>Update</button>
+            <input type="image" class='edit' src="/images/pencil.svg" alt="Edit item" title="Edit item">
+            <input type="image" class='update' src="/images/save.svg" alt="Save changes" hidden title="Save changes">
+            <input type="image" class='del' src="/images/trash.svg" alt="Delete item" title="Delete item">
         </li>
         <% }) %>
     </ul>
