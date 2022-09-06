@@ -15,4 +15,6 @@ const TodoSchema = new mongoose.Schema({
   }
 })
 
+TodoSchema.index({ todo: "text" })
+
 module.exports = mongoose.model('Todo', TodoSchema)
