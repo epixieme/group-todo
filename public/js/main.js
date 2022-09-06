@@ -3,6 +3,7 @@ const todoItem = document.querySelectorAll("input.check-incomplete");
 const todoComplete = document.querySelectorAll("input.check-completed");
 const editBtn = document.querySelectorAll(".edit");
 const updateBtn = document.querySelectorAll(".update");
+const searchBtn = document.getElementById("search-button");
 
 Array.from(deleteBtn).forEach((el) => {
   el.addEventListener("click", deleteTodo);
@@ -15,6 +16,42 @@ Array.from(todoItem).forEach((el) => {
 Array.from(todoComplete).forEach((el) => {
   el.addEventListener("click", markIncomplete);
 });
+
+// Search feature
+
+searchBtn.addEventListener("click", async () => {
+  try {
+    const searchQuery = document.getElementById("searchBar").value;
+    console.log(searchQuery);
+    const response = await fetch(`/todos/search/${searchQuery}`);
+    const data = await response.json();
+    console.log(data[0]);
+    // I specify data[0] because the response I'm getting from the server is an array that contains an object, and I only want the object, not the "wrapper"
+    displayResult(data[0]);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+function displayResult(item) {
+  const searchResult = document.querySelector(".search-result");
+  if (!item) searchResult.innerHTML = "<p>No items found.</p>";
+  else {
+    searchResult.innerHTML = `
+  <h2 class="pb-4">Search Results</h2>
+  <section class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <ul>
+    <li class='todoItem' data-id=${item._id}>
+    <input type="image" class="<%= el.completed === true ? "check-completed" : "check-incomplete"%>"
+                src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>"
+                alt="<%= el.completed === true ? "Item uncompleted" : "Item completed"%>">
+            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+            <input type="image" class='edit' src="/images/pencil.svg" alt="Edit item" title="Edit item">
+            <input type="image" class='update' src="/images/save.svg" alt="Save changes" hidden title="Save changes">
+            <input type="image" class='del' src="/images/trash.svg" alt="Delete item" title="Delete item">
+        </li>`;
+  }
+}
 
 // edit the todo item
 
