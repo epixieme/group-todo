@@ -38,6 +38,7 @@
           </div>
         </div>
       </header>
+      <div class="container">
  <h1>Todos</h1>
   <section>
     <label for="searchItem">Search Todo List</label>
@@ -50,20 +51,6 @@
         />
       </form>
   </section>
-  <div class="container">
-    <div class="list-group w-auto">
-        <label class="list-group-item d-flex gap-3">
-          <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="" style="font-size: 1.375em;">
-          <span class="pt-1 form-checked-content">
-            <strong>My task for today</strong>
-            <small class="d-block text-muted">
-              <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
-              something
-            </small>
-          </span>
-        </label>
-      </div>
-    </div>
     <ul>
         <% todos.forEach( el=> { %> <li class='todoItem' data-id='<%=el._id%>'>
             <input type="image" class="<%= el.completed === true ? "check-completed" : "check-incomplete"%>"
@@ -85,6 +72,7 @@
     </form>
 
     <a href="/logout">Logout</a>
+  </div>
 
     <!-- footer  -->
     <div class="container">
