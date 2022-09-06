@@ -1,32 +1,26 @@
 h1 {
   color: red;
 }
-.completed {
-  text-decoration: line-through;
-  color: gray;
-}
-.not {
-  text-decoration: underline;
-}
 
-.filter-green {
-  filter: invert(83%) sepia(45%) saturate(2300%) hue-rotate(60deg)
-    brightness(93%) contrast(99%);
-}
+/*---- Style for the ToDos   ----- */
 
-.del {
+input[type="image"] {
+  vertical-align: bottom;
   transition: 0.2s;
+  padding-left: 5px;
 }
 
-.del:hover {
+input[type="image"]:hover {
   transform: scale(1.2);
   transition: 0.2s;
 }
 
-.editText{
-
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }
 
-.updateText{
-  
+.check-completed {
+  filter: invert(83%) sepia(45%) saturate(2300%) hue-rotate(60deg)
+    brightness(93%) contrast(99%);
 }
