@@ -27,11 +27,11 @@ module.exports = {
     try {
       // get search input from client - name = searchItem
       let searchItem = req.params.searchParam;
-      let todoItem = await Todo.find({
+      let foundItems = await Todo.find({
         $text: { $search: searchItem, $diacriticSensitive: true }, // add searchItem search term to the find
       });
-      console.log(todoItem);
-      res.json(todoItem);
+      console.log(foundItems);
+      res.json(foundItems);
     } catch (error) {
       errorHandling(res, error);
     }
