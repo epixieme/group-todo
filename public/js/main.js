@@ -22,10 +22,8 @@ Array.from(todoComplete).forEach((el) => {
 searchBtn.addEventListener("click", async () => {
   try {
     const searchQuery = document.getElementById("searchBar").value;
-    console.log(searchQuery);
     const response = await fetch(`/todos/search/${searchQuery}`);
     const data = await response.json();
-    console.log(data);
     displayResults(data);
   } catch (error) {
     console.log(error);
