@@ -186,7 +186,7 @@ function editTodoInfo() {
     saveChanges.hidden = false;
     todoText.setAttribute("contenteditable", true);
     todoText.style.background = "#C8CFD2";
-    todoText.border = "1px solid black";
+    todoText.style.border = "1px solid black";
     todoText.focus();
   }
 }
