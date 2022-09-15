@@ -58,7 +58,7 @@
     </div>
     <section aria-labelledby="todos">
       <ul class="list-group w-auto">
-        <span class="text-center"><%= user.userName %> has <%= left %> things left to do:</span>
+        <span class="text-center pb-3"><%= user.userName %> has <%= left %> things left to do:</span>
         <% todos.forEach( el=> { %> <li class='list-group-item d-flex gap-3 todoItem' data-id='<%=el._id%>'>
           <input type="image" class="<%= el.completed === true ? "check-completed" : "check-incomplete"%>"
             src="<%= el.completed === true ? "/images/check-square-fill.svg" : "/images/square.svg"%>"
