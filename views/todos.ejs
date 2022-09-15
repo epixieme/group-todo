@@ -42,13 +42,20 @@
       </div>
     </div>
   </header>
-  <div class="container">
+  <div class="container text-muted">
     <section>
-      <label for="searchItem">Search Todo List</label>
+      <label for="searchItem" class="pt-3">Search Todo List</label>
       <input id="searchBar" type="search" name="searchItem" aria-label="search" />
       <button id="search-button">Search</button>
       <div class="search-result"></div>
     </section>
+    <div class="ripple-background">
+      <div class="circle xxlarge shade1"></div>
+      <div class="circle xlarge shade2"></div>
+      <div class="circle large shade3"></div>
+      <div class="circle mediun shade4"></div>
+      <div class="circle small shade5"></div>
+    </div>
     <section aria-labelledby="todos">
       <ul class="list-group w-auto">
         <span class="text-center"><%= user.userName %> has <%= left %> things left to do:</span>
