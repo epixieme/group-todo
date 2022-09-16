@@ -45,13 +45,6 @@
     </div>
   </header>
   <div class="container text-muted">
-
-    <section>
-      <label for="searchItem" class="pt-3">Search Todo List</label>
-      <input id="searchBar" type="search" name="searchItem" aria-label="search" />
-      <button id="search-button">Search</button>
-      <div class="search-result"></div>
-    </section>
     <!-- animation background -->
     <div class="ripple-background">
       <div class="circle xxlarge shade1"></div>
@@ -69,13 +62,11 @@
         <% } else if (isSearch) { %>
         <span class="text-center pb-3">No matches found.</span>
         <% } else if (left > 0) { %>
-        <span class="text-center pb-3"><%= user.userName %> has <%= left %> things left to do</span>
+        <span class="text-center pb-3"><span class="text-white"><%= user.userName %> </span> has <%= left %> things left
+          to do</span>
         <% } else { %>
-        <span class="text-center pb-3"><%= user.userName %> has nothing to do.</span>
+        <span class="text-center pb-3"><span class="text-white"><%= user.userName %> </span> has nothing to do.</span>
         <% }; %>
-
-      <ul class="list-group w-auto ">
-        <span class="text-center pb-4"><span class="text-white"><%= user.userName %> </span> has <%= left %> things left to do:</span>
 
         <% todos.forEach( el=> { %> <li class='list-group-item d-flex gap-3 todoItem' data-id='<%=el._id%>'>
           <input type="image" class="<%= el.completed === true ? "check-completed" : "check-incomplete"%>"
