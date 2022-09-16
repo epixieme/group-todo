@@ -94,85 +94,53 @@ ul {
 }
 
 
-body{
-  background: #070d14 !important;
+
+
+
+
+.signin-bg{
+  background-image: url("/images/signup-background.jpg");
+
 }
 
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background:white;
-  animation: ripple 15s infinite;
-  box-shadow: 0px 0px 1px 0px #508fb9;
-  z-index: -1000;
+
+
+
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #070d14 50%,#3ADAA2 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+  animation-duration:15s;
+ 
 }
 
-.small {
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  bottom: -100px;
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:10s;
 }
 
-.medium {
-  width: 400px;
-  height: 400px;
-  left: -200px;
-  bottom: -200px;
+.bg3 {
+  animation-duration:8s;
 }
 
-.large {
-  width: 600px;
-  height: 600px;
-  left: -300px;
-  bottom: -300px;
+
+h1 {
+  font-family:monospace;
 }
 
-.xlarge {
-  width: 800px;
-  height: 800px;
-  left: -400px;
-  bottom: -400px;
-}
-
-.xxlarge {
-  width: 1000px;
-  height: 1000px;
-  left: -500px;
-  bottom: -500px;
-}
-
-.shade1 {
-  opacity: 0.2;
-}
-.shade2 {
-  opacity: 0.5;
-}
-
-.shade3 {
-  opacity: 0.7;
-}
-
-.shade4 {
-  opacity: 0.8;
-}
-
-.shade5 {
-  opacity: 0.9;
-}
-
-@keyframes ripple {
+@keyframes slide {
   0% {
-    transform: scale(0.8);
+    transform:translateX(-25%);
   }
-  50%{
-    transform: scale(1);
-  }
-
   100% {
-    transform: scale(0.8);
+    transform:translateX(25%);
   }
 }
-
-
 
