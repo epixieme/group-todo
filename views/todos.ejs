@@ -31,9 +31,9 @@
               <li><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul> -->
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search Todo List"
-            aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="/todos" method="GET">
+          <input type="search" name="searchTerm" class="form-control form-control-dark text-bg-dark"
+            placeholder="Search Todo List" aria-label="Search">
         </form>
 
         <div class="text-end">
@@ -44,12 +44,6 @@
     </div>
   </header>
   <div class="container text-muted">
-    <section>
-      <label for="searchItem" class="pt-3">Search Todo List</label>
-      <input id="searchBar" type="search" name="searchItem" aria-label="search" />
-      <button id="search-button">Search</button>
-      <div class="search-result"></div>
-    </section>
     <div class="ripple-background">
       <div class="circle xxlarge shade1"></div>
       <div class="circle xlarge shade2"></div>
@@ -75,20 +69,16 @@
         </li>
         <% }) %>
         <form action="/todos/createTodo" method='POST'>
-
           <label class="list-group-item d-flex gap-3 bg-light">
 
-            <input class="form-check-input form-check-input-placeholder bg-light flex-shrink-0 pe-none" disabled=""
-              type="checkbox" value="" style="font-size: 1.375em;">
+            <!-- Not sure why there was a disabled checkbox here but I found it confusing.  Can remove this comment in a future commit. -->
+            <!-- <input class="form-check-input form-check-input-placeholder bg-light flex-shrink-0 pe-none" disabled=""
+              type="checkbox" value="" style="font-size: 1.375em;"> -->
 
             <input id="add-todo" type="text" name='todoItem' class="bg-light border-0 pt-1 form-checked-content"
               placeholder="Add new note...">
 
           </label>
-
-
-
-
         </form>
       </ul>
 
