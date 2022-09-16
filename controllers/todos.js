@@ -6,32 +6,44 @@ function errorHandling(res, error) {
 
 module.exports = {
   getTodos: async (req, res) => {
-    console.log(req.user);
     try {
-      const todoItems = await Todo.find({ userId: req.user.id });
-      const itemsLeft = await Todo.countDocuments({
-        userId: req.user.id,
-        completed: false,
-      });
+      let todoItems, itemsLeft, isSearch;
+      if (!req.query.searchTerm) {
+        todoItems = await Todo.find({ userId: req.user.id });
+        itemsLeft = await Todo.countDocuments({
+          userId: req.user.id,
+          completed: false,
+        });
+        isSearch = false;
+      } else {
+        todoItems = await Todo.find({
+          $text: { $search: req.query.searchTerm, $diacriticSensitive: true },
+        });
+        itemsLeft = null;
+        isSearch = true;
+      }
       res.render("todos.ejs", {
         todos: todoItems,
         left: itemsLeft,
         user: req.user,
+        isSearch,
       });
     } catch (err) {
-      errorHandling(res, error);
+      errorHandling(res, err);
     }
   },
   searchTodo: async (req, res) => {
-    console.log(req.params);
     try {
-      // get search input from client - name = searchItem
-      let searchItem = req.params.searchParam;
+      let searchTerm = req.query.searchTerm;
       let foundItems = await Todo.find({
-        $text: { $search: searchItem, $diacriticSensitive: true }, // add searchItem search term to the find
+        $text: { $search: searchTerm, $diacriticSensitive: true },
       });
       console.log(foundItems);
-      res.json(foundItems);
+      res.render("todos.ejs", {
+        todos: foundItems,
+        left: null,
+        user: req.user,
+      });
     } catch (error) {
       errorHandling(res, error);
     }
