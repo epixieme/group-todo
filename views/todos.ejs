@@ -10,6 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link href="list-groups.css" rel="stylesheet">
+  <!-- Where is list-groups.css? -->
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
@@ -53,7 +54,13 @@
     </div>
     <section aria-labelledby="todos">
       <ul class="list-group w-auto">
-        <% if (left > 0) { %>
+        <!-- Here I have added conditionals to change the content of that span (which could probably be a header?) depending on the situation. -->
+
+        <% if (isSearch && todos.length > 0) { %>
+        <span class="text-center pb-3">Search results:</span>
+        <% } else if (isSearch) { %>
+        <span class="text-center pb-3">No matches found.</span>
+        <% } else if (left > 0) { %>
         <span class="text-center pb-3"><%= user.userName %> has <%= left %> things left to do</span>
         <% } else { %>
         <span class="text-center pb-3"><%= user.userName %> has nothing to do.</span>
@@ -68,6 +75,16 @@
           <input type="image" class='del' src="/images/trash.svg" alt="Delete item" title="Delete item">
         </li>
         <% }) %>
+
+        <!-- The conditional below checks to see if the page has been rendered as the result of a regular GET,  or as a GET related to a search request.
+        If it's been rendered as a regular GET, it will display the "add a new item to the list" option.  
+        If it's been rendered as a result of a search request, it will display a button that will re-render the todo list. -->
+
+        <% if (isSearch) { %>
+        <form action="/todos" method="GET">
+          <button>Back to main list</button>
+        </form>
+        <% } else { %>
         <form action="/todos/createTodo" method='POST'>
           <label class="list-group-item d-flex gap-3 bg-light">
 
@@ -80,6 +97,7 @@
 
           </label>
         </form>
+        <% } %>
       </ul>
 
     </section>
