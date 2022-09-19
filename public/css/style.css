@@ -1,6 +1,6 @@
-h1 {
+/* h1 {
   color: red;
-}
+} */
 
 /*---- Style for the ToDos   ----- */
 
@@ -97,11 +97,11 @@ ul {
 
 
 
-
+/* 
 .signin-bg{
   background-image: url("images/signup-background.jpg") !important;
 
-}
+} */
 
 
 
@@ -142,5 +142,35 @@ h1 {
   100% {
     transform:translateX(25%);
   }
+}
+
+body, html {
+  height: 100%;
+}
+
+.bg-image{
+  /* The image used */
+  background-image: url("/images/todopen.jpg") !important;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-image-signup{
+  /* The image used */
+  background-image: url(/images/signup-background.jpg) !important;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
