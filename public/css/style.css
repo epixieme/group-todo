@@ -99,7 +99,7 @@ ul {
 
 
 .signin-bg{
-  background-image: url("/images/signup-background.jpg");
+  background-image: url("images/signup-background.jpg") !important;
 
 }
 
