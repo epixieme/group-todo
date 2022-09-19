@@ -184,9 +184,7 @@ function editTodoInfo() {
   if (id) {
     this.hidden = true;
     saveChanges.hidden = false;
-    todoText.setAttribute("contenteditable", true);
-    todoText.style.background = "#C8CFD2";
-    todoText.style.border = "1px solid black";
+    todoText.style.cssText = "background:#C8CFD2;border:1px solid black;border-radius:5px;padding:5px;"
     todoText.focus();
   }
 }
@@ -201,8 +199,9 @@ async function updateTodoInfo() {
     this.hidden = true;
     editItem.hidden = false;
     todoText.setAttribute("contenteditable", false);
-    todoText.style.background = "none";
-    todoText.border = "none";
+    // todoText.style.background = "none";
+    // todoText.border = "none";
+    todoText.style.cssText="background:none; border:none;"
   }
   try {
     await fetch("/todos/updateTodo", {
