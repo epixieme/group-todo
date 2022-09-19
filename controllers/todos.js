@@ -17,6 +17,7 @@ module.exports = {
         isSearch = false;
       } else {
         todoItems = await Todo.find({
+          userId: req.user.id,
           $text: { $search: req.query.searchTerm, $diacriticSensitive: true },
         });
         itemsLeft = null;
